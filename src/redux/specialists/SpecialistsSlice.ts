@@ -28,7 +28,9 @@ export const SpecialistsSlice = createSlice({
       })
       .addCase(getSpecialists.fulfilled, (state, action: PayloadAction<ISpecialistsResponse>) => {
         state.isLoading = false
-        state.specialists = action.payload.items
+        state.specialists = action.payload.merged
+          ? [...state.specialists, ...action.payload.items]
+          : action.payload.items
         state.totalCount = action.payload.totalCount
       })
       .addCase(getTopics.fulfilled, (state, action: PayloadAction<ITopic[]>) => {

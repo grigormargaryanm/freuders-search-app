@@ -7,8 +7,7 @@ type ApiPropsType<T> = {
   params?: T
 }
 export const api = async <T>({ method, url, params }: ApiPropsType<T>) => {
-  return await axios[method](
-    `https://freuders-web-api-test-3.azurewebsites.net/api/${url}`,
-    params || {},
-  )
+  return await axios[method](`https://freuders-web-api-test-3.azurewebsites.net/api/${url}`, {
+    params,
+  })
 }
