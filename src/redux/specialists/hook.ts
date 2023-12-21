@@ -3,15 +3,24 @@ import { api } from '../../services/api'
 import { ISpecialistsRequest } from '../../types/ISpecialist'
 import { Methods } from '../../types/Service'
 
+type GetSpecialist = {
+  data: ISpecialistsRequest
+  merged: boolean
+}
 export const getSpecialists = createAsyncThunk(
   'specialists/fetchSpecialists',
-  async ({ limit, offset }: ISpecialistsRequest, thunkAPI) => {
+  async (params: GetSpecialist, thunkAPI) => {
     try {
-      const response = await api({
+      const response = await api<ISpecialistsRequest>({
         method: Methods.GET,
-        url: `search/specialists?limit=${limit}&offset=${offset}`,
+        url: 'search/specialists',
+        params: params.data,
       })
-      return response.data.data
+      return {
+        items: response.data.data.items,
+        totalCount: response.data.data.totalCount,
+        merged: params.merged,
+      }
     } catch (e) {
       return thunkAPI.rejectWithValue('Не удалось загрузить пользователей')
     }

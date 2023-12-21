@@ -1,5 +1,6 @@
 import { FC, ReactNode } from 'react'
 import { Control, Controller, FieldValues } from 'react-hook-form'
+import { Label, Select, SelectWrapper } from './styles'
 
 /* eslint-disable  @typescript-eslint/no-explicit-any */
 type SelectPropsType = {
@@ -11,19 +12,19 @@ type SelectPropsType = {
 }
 const FormSelect: FC<SelectPropsType> = ({ control, name, label, placeholder = '', children }) => {
   return (
-    <>
-      {label && <label htmlFor='selectField'>{label}</label>}
+    <SelectWrapper>
+      {label && <Label htmlFor='selectField'>{label}</Label>}
       <Controller
         name={name}
         control={control}
         render={({ field }) => (
-          <select {...field}>
+          <Select {...field}>
             {placeholder && <option value=''>{placeholder}</option>}
             {children}
-          </select>
+          </Select>
         )}
       />
-    </>
+    </SelectWrapper>
   )
 }
 

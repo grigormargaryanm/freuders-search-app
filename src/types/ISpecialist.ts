@@ -19,8 +19,29 @@ export interface ISpecialist {
 export interface ISpecialistsResponse {
   items: ISpecialist[]
   totalCount: number
+  merged: boolean
 }
 export interface ISpecialistsRequest {
   limit: number
   offset: number
+  level?: number
+  sex?: number
+  subjectId?: number
+  profSpeciality?: number
+  isCertified?: boolean
+  ratingFrom?: number
+  ratingTo?: number
+  ageFrom?: number
+  ageTo?: number
+  filterType?: number
+}
+
+export enum OnlineStatuses {
+  OFFLINE = 1,
+  ONLINE = 2,
+}
+
+export enum SexEnum {
+  MEN = 1,
+  WOMEN = 2,
 }
