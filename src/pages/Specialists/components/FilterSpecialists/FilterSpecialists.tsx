@@ -4,7 +4,7 @@ import { useAppSelector } from '../../../../hooks'
 import { age, profSpeciality, rating, sex } from '../../../../constants/filtervalues'
 import { ISpecialistsRequest } from '../../../../types/ISpecialist'
 import { Button, FormSelect } from '../../../../ui/components'
-import { ButtonWrapper, FieldsWrapper } from './styles'
+import { ButtonWrapper, FieldsWrapper, AgeWrapper } from './styles'
 
 type FilterProps = {
   handleFilterData: (data: FieldValues) => void
@@ -48,14 +48,14 @@ const FilterSpecialists: FC<FilterProps> = ({ handleFilterData, filter }) => {
             </option>
           ))}
         </FormSelect>
-        <div style={{ display: 'flex', alignItems: 'end', justifyContent: 'space-between' }}>
+        <AgeWrapper>
           <FormSelect control={control} name='ageFrom' label='В возрасте' prefix='От'>
             {renderAgeOptions}
           </FormSelect>
           <FormSelect control={control} name='ageTo' prefix='До'>
             {renderAgeOptions}
           </FormSelect>
-        </div>
+        </AgeWrapper>
         <FormSelect control={control} name='subjectId' placeholder='Любая тема' label='Тема'>
           {topics.map(({ id, name }) => (
             <option value={id} key={id}>

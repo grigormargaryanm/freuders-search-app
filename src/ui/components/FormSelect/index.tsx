@@ -1,6 +1,6 @@
 import { FC, ReactNode } from 'react'
 import { Control, Controller, FieldValues } from 'react-hook-form'
-import { Label, Select, SelectWrapper } from './styles'
+import {Label, PrefixWrapper, Select, SelectWrapper, Wrapper} from './styles'
 
 /* eslint-disable  @typescript-eslint/no-explicit-any */
 type SelectPropsType = {
@@ -26,13 +26,13 @@ const FormSelect: FC<SelectPropsType> = ({
         name={name}
         control={control}
         render={({ field }) => (
-          <div style={{ display: 'flex', width: '100%', alignItems: 'center' }}>
-            {prefix && <span style={{ marginLeft: '12px', marginRight: '12px' }}>{prefix}</span>}
+          <Wrapper>
+            {prefix && <PrefixWrapper>{prefix}</PrefixWrapper>}
             <Select {...field}>
               {placeholder && <option value=''>{placeholder}</option>}
               {children}
             </Select>
-          </div>
+          </Wrapper>
         )}
       />
     </SelectWrapper>

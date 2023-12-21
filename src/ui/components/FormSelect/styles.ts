@@ -5,6 +5,17 @@ export const SelectWrapper = styled.div`
   flex-direction: column;
 `
 
+export const Wrapper = styled.div`
+  display: flex;
+  width: 100%;
+  align-items: center;
+`
+
+export const PrefixWrapper = styled.span`
+  margin-left: 12px;
+  margin-right: 12px;
+`
+
 export const Label = styled.label`
   margin-left: 8px;
   margin-bottom: 12px;
