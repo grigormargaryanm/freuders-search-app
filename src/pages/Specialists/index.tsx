@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router-dom'
 import { FieldValues } from 'react-hook-form'
 import { getSpecialists, getTopics } from '../../redux/specialists/hook'
 import { useAppSelector, useAppDispatch } from '../../hooks'
-import { ISpecialist } from '../../types/ISpecialist'
+import { ISpecialist, ISpecialistsRequest } from '../../types/ISpecialist'
 import { Button } from '../../ui/components'
 import FilterSpecialists from './components/FilterSpecialists/FilterSpecialists'
 import SpecialistCard from './components/SpecialistCard/SpecialistCard'
@@ -15,11 +15,13 @@ const PAGE_OFFSET = 0
 const Specialists: FC = () => {
   const dispatch = useAppDispatch()
   const { specialists, totalCount } = useAppSelector((state) => state.specialists)
-  const [filter, setFilter] = useState({ limit: PAGE_LIMIT, offset: PAGE_OFFSET })
+  const [filter, setFilter] = useState<ISpecialistsRequest>({} as ISpecialistsRequest)
   const [searchParams, setSearchParams] = useSearchParams()
 
   useEffect(() => {
-    dispatch(getSpecialists({ data: filter, merged: !!filter.offset }))
+    if (Object.keys(filter).length) {
+      dispatch(getSpecialists({ data: filter, merged: !!filter.offset }))
+    }
   }, [filter])
 
   useEffect(() => {
@@ -27,22 +29,34 @@ const Specialists: FC = () => {
   }, [])
 
   useEffect(() => {
+    const filterData = { limit: PAGE_LIMIT, offset: PAGE_OFFSET }
     const queryParams = searchParams
     const allParams: Record<string, string> = {}
     queryParams.forEach((value, key) => {
       allParams[key] = value
     })
-    if (Object.keys(allParams).length) {
-      setFilter({ ...filter, ...allParams })
-    }
+    setFilter({ ...filterData, ...allParams })
   }, [])
 
   const handleFilterData = (data: FieldValues) => {
+    const filterData = { ...filter, ...data, offset: PAGE_OFFSET }
     const nonEmptyData = Object.fromEntries(
       Object.entries(data).filter(([, value]) => value !== ''),
     )
+    if (data.ratingRange) {
+      const [ratingFrom, ratingTo] = data.ratingRange.split('-')
+      nonEmptyData.ratingFrom = ratingFrom
+      nonEmptyData.ratingTo = ratingTo
+      filterData.ratingFrom = ratingFrom
+      filterData.ratingTo = ratingTo
+      delete nonEmptyData.ratingRange
+      delete data.ratingRange
+    } else {
+      filterData.ratingFrom = ''
+      filterData.ratingTo = ''
+    }
     setSearchParams(nonEmptyData)
-    setFilter({ ...filter, ...data, offset: PAGE_OFFSET })
+    setFilter({ ...filter, ...filterData, offset: PAGE_OFFSET })
   }
 
   const handleMoreSpecialists = () => {
@@ -51,8 +65,8 @@ const Specialists: FC = () => {
 
   return (
     <PageWrapper>
-      <FilterSpecialists handleFilterData={handleFilterData} />
-      {specialists ? (
+      <FilterSpecialists handleFilterData={handleFilterData} filter={filter} />
+      {specialists.length ? (
         <>
           <SpecialistWrapper>
             {specialists.map((specialist: ISpecialist) => (

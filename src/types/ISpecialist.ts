@@ -29,8 +29,8 @@ export interface ISpecialistsRequest {
   subjectId?: number
   profSpeciality?: number
   isCertified?: boolean
-  ratingFrom?: number
-  ratingTo?: number
+  ratingFrom?: string
+  ratingTo?: string
   ageFrom?: number
   ageTo?: number
   filterType?: number

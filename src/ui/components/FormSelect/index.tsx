@@ -8,9 +8,17 @@ type SelectPropsType = {
   name: string
   label?: string
   placeholder?: string
+  prefix?: string
   children: ReactNode
 }
-const FormSelect: FC<SelectPropsType> = ({ control, name, label, placeholder = '', children }) => {
+const FormSelect: FC<SelectPropsType> = ({
+  control,
+  name,
+  label,
+  placeholder = '',
+  children,
+  prefix,
+}) => {
   return (
     <SelectWrapper>
       {label && <Label htmlFor='selectField'>{label}</Label>}
@@ -18,10 +26,13 @@ const FormSelect: FC<SelectPropsType> = ({ control, name, label, placeholder = '
         name={name}
         control={control}
         render={({ field }) => (
-          <Select {...field}>
-            {placeholder && <option value=''>{placeholder}</option>}
-            {children}
-          </Select>
+          <div style={{ display: 'flex', width: '100%', alignItems: 'center' }}>
+            {prefix && <span style={{ marginLeft: '12px', marginRight: '12px' }}>{prefix}</span>}
+            <Select {...field}>
+              {placeholder && <option value=''>{placeholder}</option>}
+              {children}
+            </Select>
+          </div>
         )}
       />
     </SelectWrapper>
