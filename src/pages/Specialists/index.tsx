@@ -1,11 +1,7 @@
-import {FC} from "react";
+import { FC } from 'react'
 
-const Specialists:FC = () => {
-    return (
-        <div>
-            Specialists page
-        </div>
-    );
-};
+const Specialists: FC = () => {
+  return <div>Specialists page</div>
+}
 
-export default Specialists;
+export default Specialists
