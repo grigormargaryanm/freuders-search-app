@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { ISpecialist, OnlineStatuses } from '../../../../types/ISpecialist'
+import { ISpecialist, OnlineStatuses, SexEnum } from '../../../../types/ISpecialist'
 import {
   CardWrapper,
   RatingWrapper,
@@ -30,9 +30,13 @@ const SpecialistCard: FC<SpecialistType> = ({
     sex,
   },
 }) => {
+  const imgUrl = photoUrl
+    ? photoUrl
+    : `/assets/${sex === SexEnum.MEN ? 'no_photo_man.svg' : 'no_photo_woman.svg'}`
+
   return (
     <CardWrapper>
-      <Image src={photoUrl} />
+      <Image src={imgUrl} />
       <RatingWrapper>
         <StyledText>РЕЙТИНГ</StyledText>
         <StyledText $fs={rating ? 24 : 16}>{rating ? rating : 'NEW'}</StyledText>
