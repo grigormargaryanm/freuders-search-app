@@ -15,3 +15,12 @@ export interface ISpecialist {
   onlineStatus: number
   lastActivityTime: string
 }
+
+export interface ISpecialistsResponse {
+  items: ISpecialist[]
+  totalCount: number
+}
+export interface ISpecialistsRequest {
+  limit: number
+  offset: number
+}
