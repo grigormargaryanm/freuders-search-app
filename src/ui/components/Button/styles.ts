@@ -14,7 +14,7 @@ export const ButtonStyle = styled.button`
     opacity: 0.8;
   }
 
-  @media (min-width: 768px) and (max-width: 1200px) {
+  @media (max-width: 1200px) {
     font-size: 16px;
     height: 48px;
   }

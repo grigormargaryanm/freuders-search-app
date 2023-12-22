@@ -14,7 +14,7 @@ export const PageWrapper = styled.div`
   }
 
   @media (max-width: 768px) {
-    padding: 16px;
+    padding: 16px 16px 40px 16px;
     margin: 0;
   }
 `
@@ -25,6 +25,12 @@ export const ButtonWrapper = styled.div`
   }
   display: flex;
   justify-content: center;
+
+  @media (max-width: 768px) {
+    button {
+      width: 200px;
+    }
+  }
 `
 export const SpecialistWrapper = styled.div`
   display: grid;
