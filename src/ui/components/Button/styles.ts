@@ -8,7 +8,19 @@ export const ButtonStyle = styled.button`
   cursor: pointer;
   font-size: 20px;
   color: #fff;
+  font-weight: 700;
+
   &&:hover {
     opacity: 0.8;
+  }
+
+  @media (min-width: 768px) and (max-width: 1200px) {
+    font-size: 16px;
+    height: 48px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+    height: 40px;
   }
 `

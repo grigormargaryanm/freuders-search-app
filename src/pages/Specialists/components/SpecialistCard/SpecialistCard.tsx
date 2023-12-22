@@ -10,6 +10,7 @@ import {
   SubjectCount,
   SubjectWrapper,
   OnlineBadge,
+  ActivityTime,
 } from './styles'
 import { getLastActiveTime } from './utils'
 
@@ -39,7 +40,9 @@ const SpecialistCard: FC<SpecialistType> = ({
       <Image src={imgUrl} />
       <RatingWrapper>
         <StyledText>РЕЙТИНГ</StyledText>
-        <StyledText $fs={rating ? 24 : 16}>{rating ? rating : 'NEW'}</StyledText>
+        <StyledText $fs={rating ? 24 : 16} $isNew={!rating}>
+          {rating ? rating : 'NEW'}
+        </StyledText>
       </RatingWrapper>
       <PersonalInfo>
         <StyledText $fs={26}>{`${name}, ${age}`}</StyledText>
@@ -48,7 +51,7 @@ const SpecialistCard: FC<SpecialistType> = ({
           <DefaultSubject>{defaultSubjectName}</DefaultSubject>
           {!!subjectsCount && <SubjectCount>{`и еще ${subjectsCount} темы`}</SubjectCount>}
         </SubjectWrapper>
-        <SubjectCount>{getLastActiveTime(lastActivityTime, sex)}</SubjectCount>
+        <ActivityTime>{getLastActiveTime(lastActivityTime, sex)}</ActivityTime>
       </PersonalInfo>
     </CardWrapper>
   )

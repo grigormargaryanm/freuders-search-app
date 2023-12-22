@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react'
+import { FC } from 'react'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import { useAppSelector } from '../../../../hooks'
 import { age, profSpeciality, rating, sex } from '../../../../constants/filtervalues'
@@ -16,21 +16,17 @@ const FilterSpecialists: FC<FilterProps> = ({ handleFilterData, filter }) => {
     handleFilterData(data)
   }
 
-  const { handleSubmit, control, reset } = useForm<FieldValues>()
-
-  useEffect(() => {
-    if (Object.keys(filter).length) {
-      reset({
-        sex: filter.sex || '',
-        ageFrom: filter.ageFrom || 18,
-        ageTo: filter.ageTo || 99,
-        profSpeciality: filter.profSpeciality || '',
-        subjectId: filter.subjectId || '',
-        ratingRange:
-          filter?.ratingFrom && filter?.ratingTo ? `${filter?.ratingFrom}-${filter?.ratingTo}` : '',
-      })
-    }
-  }, [filter])
+  const { handleSubmit, control } = useForm<FieldValues>({
+    defaultValues: {
+      sex: filter.sex || '',
+      ageFrom: filter.ageFrom || 18,
+      ageTo: filter.ageTo || 99,
+      profSpeciality: filter.profSpeciality || '',
+      subjectId: filter.subjectId || '',
+      ratingRange:
+        filter?.ratingFrom && filter?.ratingTo ? `${filter?.ratingFrom}-${filter?.ratingTo}` : '',
+    },
+  })
 
   const renderAgeOptions = age.map((item) => (
     <option value={item} key={item}>
