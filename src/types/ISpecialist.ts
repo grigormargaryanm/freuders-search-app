@@ -21,19 +21,21 @@ export interface ISpecialistsResponse {
   totalCount: number
   merged: boolean
 }
+
+type Level = 0 | 1
+type SexAndSpeciality = 1 | 2
 export interface ISpecialistsRequest {
   limit: number
   offset: number
-  level?: number
-  sex?: number
-  subjectId?: number
-  profSpeciality?: number
+  level?: Level
+  sex?: SexAndSpeciality
+  subjectId?: string
+  profSpeciality?: SexAndSpeciality
   isCertified?: boolean
   ratingFrom?: string
   ratingTo?: string
   ageFrom?: number
   ageTo?: number
-  filterType?: number
 }
 
 export enum OnlineStatuses {

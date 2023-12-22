@@ -4,7 +4,7 @@ import { FieldValues } from 'react-hook-form'
 import { getSpecialists, getTopics } from '../../redux/specialists/hook'
 import { useAppSelector, useAppDispatch } from '../../hooks'
 import { ISpecialist, ISpecialistsRequest } from '../../types/ISpecialist'
-import { Button } from '../../ui/components'
+import { Button, Spinner } from '../../ui/components'
 import FilterSpecialists from './components/FilterSpecialists/FilterSpecialists'
 import SpecialistCard from './components/SpecialistCard/SpecialistCard'
 import NotFound from './components/NotFound'
@@ -74,6 +74,7 @@ const Specialists: FC = () => {
             {specialists.map((specialist: ISpecialist) => (
               <SpecialistCard key={specialist.userId} specialist={specialist} />
             ))}
+            {isLoading && <Spinner />}
           </SpecialistWrapper>
           {totalCount > filter.offset + PAGE_LIMIT && (
             <ButtonWrapper>

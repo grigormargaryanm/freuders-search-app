@@ -19,6 +19,7 @@ const subjectGeneralStyled = css`
 `
 export const CardWrapper = styled.div`
   position: relative;
+  cursor: pointer;
 `
 export const RatingWrapper = styled.div`
   position: absolute;
