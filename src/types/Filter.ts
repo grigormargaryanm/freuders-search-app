@@ -1,4 +1,4 @@
 export type FilterDataType = {
   title: string
-  value: number
+  value: number | string
 }

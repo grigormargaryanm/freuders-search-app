@@ -1,15 +1,17 @@
-export const sex = [
+import { FilterDataType } from '../types/Filter'
+
+export const sex: FilterDataType[] = [
   { title: 'мужчина', value: 1 },
   { title: 'женщина', value: 2 },
 ]
 
-export const profSpeciality = [
+export const profSpeciality: FilterDataType[] = [
   { title: 'консультант', value: 1 },
   { title: 'сексолог', value: 2 },
   { title: 'коуч', value: 3 },
 ]
 
-export const rating = [
+export const rating: FilterDataType[] = [
   { title: 'новые', value: '0-40' },
   { title: 'от 100 до 80', value: '80-100' },
   { title: 'от 79 до 60', value: '79-60' },
