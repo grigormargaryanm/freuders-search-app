@@ -21,7 +21,7 @@ const FormSelect: FC<SelectPropsType> = ({
 }) => {
   return (
     <SelectWrapper $hasPrefix={!!prefix}>
-      {label && <Label htmlFor='selectField'>{label}</Label>}
+      {label && <Label htmlFor='selectField' $hasPrefix={!!prefix}>{label}</Label>}
       <Controller
         name={name}
         control={control}
