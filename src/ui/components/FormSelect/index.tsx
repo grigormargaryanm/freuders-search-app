@@ -1,6 +1,6 @@
 import { FC, ReactNode } from 'react'
 import { Control, Controller, FieldValues } from 'react-hook-form'
-import {Label, PrefixWrapper, Select, SelectWrapper, Wrapper} from './styles'
+import { Label, PrefixWrapper, Select, SelectWrapper, Wrapper } from './styles'
 
 /* eslint-disable  @typescript-eslint/no-explicit-any */
 type SelectPropsType = {
@@ -20,7 +20,7 @@ const FormSelect: FC<SelectPropsType> = ({
   prefix,
 }) => {
   return (
-    <SelectWrapper>
+    <SelectWrapper $hasPrefix={!!prefix}>
       {label && <Label htmlFor='selectField'>{label}</Label>}
       <Controller
         name={name}

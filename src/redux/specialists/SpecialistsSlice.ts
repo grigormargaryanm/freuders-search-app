@@ -12,7 +12,7 @@ interface IState {
 
 const initialState: IState = {
   specialists: [],
-  isLoading: false,
+  isLoading: true,
   totalCount: 0,
   topics: [],
 }
@@ -32,6 +32,9 @@ export const SpecialistsSlice = createSlice({
           ? [...state.specialists, ...action.payload.items]
           : action.payload.items
         state.totalCount = action.payload.totalCount
+      })
+      .addCase(getSpecialists.rejected, (state) => {
+        state.isLoading = false
       })
       .addCase(getTopics.fulfilled, (state, action: PayloadAction<ITopic[]>) => {
         state.topics = action.payload

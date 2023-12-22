@@ -14,7 +14,7 @@ const PAGE_LIMIT = 12
 const PAGE_OFFSET = 0
 const Specialists: FC = () => {
   const dispatch = useAppDispatch()
-  const { specialists, totalCount } = useAppSelector((state) => state.specialists)
+  const { specialists, totalCount, isLoading } = useAppSelector((state) => state.specialists)
   const [filter, setFilter] = useState<ISpecialistsRequest>({} as ISpecialistsRequest)
   const [searchParams, setSearchParams] = useSearchParams()
 
@@ -65,7 +65,9 @@ const Specialists: FC = () => {
 
   return (
     <PageWrapper>
-      <FilterSpecialists handleFilterData={handleFilterData} filter={filter} />
+      {Object.keys(filter).length && (
+        <FilterSpecialists handleFilterData={handleFilterData} filter={filter} />
+      )}
       {specialists.length ? (
         <>
           <SpecialistWrapper>
@@ -73,15 +75,15 @@ const Specialists: FC = () => {
               <SpecialistCard key={specialist.userId} specialist={specialist} />
             ))}
           </SpecialistWrapper>
-          {totalCount > filter.offset && totalCount > PAGE_LIMIT && (
+          {totalCount > filter.offset + PAGE_LIMIT && (
             <ButtonWrapper>
               <Button type='button' text='Показать еще' onClick={handleMoreSpecialists} />
             </ButtonWrapper>
           )}
         </>
-      ) : (
+      ) : !isLoading ? (
         <NotFound />
-      )}
+      ) : null}
     </PageWrapper>
   )
 }
