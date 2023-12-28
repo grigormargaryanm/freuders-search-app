@@ -3,12 +3,12 @@ import styled from 'styled-components'
 export const SelectWrapper = styled.div<{ $hasPrefix: boolean }>`
   display: flex;
   flex-direction: column;
-  @media (min-width: 568px) and  (max-width: 768px) {
+  @media (min-width: 568px) and (max-width: 768px) {
     width: ${(props) => props.$hasPrefix && '50%'};
   }
-  
+
   @media (max-width: 568px) {
-    flex-direction:  ${(props) => props.$hasPrefix && 'row'};;
+    flex-direction: ${(props) => props.$hasPrefix && 'row'};
   }
 `
 
@@ -34,7 +34,7 @@ export const PrefixWrapper = styled.span`
   }
 `
 
-export const Label = styled.label<{$hasPrefix: boolean}>`
+export const Label = styled.label<{ $hasPrefix: boolean }>`
   margin-left: 8px;
   margin-bottom: 12px;
   font-size: 20px;
@@ -48,9 +48,9 @@ export const Label = styled.label<{$hasPrefix: boolean}>`
   @media (max-width: 768px) {
     font-size: 14px;
   }
-  
+
   @media (max-width: 568px) {
-    margin-bottom:  ${(props) => props.$hasPrefix && '0'};
+    margin-bottom: ${(props) => props.$hasPrefix && '0'};
     display: flex;
     align-items: center;
   }

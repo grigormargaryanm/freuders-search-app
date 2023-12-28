@@ -68,24 +68,24 @@ const Specialists: FC = () => {
       {Object.keys(filter).length && (
         <FilterSpecialists handleFilterData={handleFilterData} filter={filter} />
       )}
-      <div style={{height:'100%'}}>
-      {specialists.length ? (
-        <>
-          <SpecialistWrapper>
-            {specialists.map((specialist: ISpecialist) => (
-              <SpecialistCard key={specialist.userId} specialist={specialist} />
-            ))}
-            {isLoading && <Spinner />}
-          </SpecialistWrapper>
-          {totalCount > filter.offset + PAGE_LIMIT && (
-            <ButtonWrapper>
-              <Button type='button' text='Показать еще' onClick={handleMoreSpecialists} />
-            </ButtonWrapper>
-          )}
-        </>
-      ) : !isLoading ? (
-        <NotFound />
-      ) : null}
+      <div style={{ height: '100%' }}>
+        {specialists.length ? (
+          <>
+            <SpecialistWrapper>
+              {specialists.map((specialist: ISpecialist) => (
+                <SpecialistCard key={specialist.userId} specialist={specialist} />
+              ))}
+              {isLoading && <Spinner />}
+            </SpecialistWrapper>
+            {totalCount > filter.offset + PAGE_LIMIT && (
+              <ButtonWrapper>
+                <Button type='button' text='Показать еще' onClick={handleMoreSpecialists} />
+              </ButtonWrapper>
+            )}
+          </>
+        ) : !isLoading ? (
+          <NotFound />
+        ) : null}
       </div>
     </PageWrapper>
   )

@@ -6,6 +6,7 @@ export const PageWrapper = styled.div`
   display: flex;
   flex-direction: column;
   @media (min-width: 1200px) {
+    min-width: 1096px;
     max-width: 1096px;
     margin-left: auto;
     margin-right: auto;

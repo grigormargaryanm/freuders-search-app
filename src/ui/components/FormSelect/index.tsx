@@ -1,5 +1,7 @@
-import { FC, ReactNode } from 'react'
+import { FC } from 'react'
 import { Control, Controller, FieldValues } from 'react-hook-form'
+import { ITopic } from '../../../types/ITopic'
+import { FilterDataType } from '../../../types/Filter'
 import { Label, PrefixWrapper, Select, SelectWrapper, Wrapper } from './styles'
 
 /* eslint-disable  @typescript-eslint/no-explicit-any */
@@ -9,16 +11,40 @@ type SelectPropsType = {
   label?: string
   placeholder?: string
   prefix?: string
-  children: ReactNode
+  data: ITopic[] | FilterDataType[]
 }
 const FormSelect: FC<SelectPropsType> = ({
   control,
   name,
   label,
   placeholder = '',
-  children,
   prefix,
+  data,
 }) => {
+  const isTopic = (data: ITopic | FilterDataType): data is ITopic => {
+    return 'name' in data
+  }
+  const renderOptions = (data: ITopic[] | FilterDataType[]) => {
+    return (
+      <>
+        {data.map((item) => {
+          if (isTopic(item)) {
+            return (
+              <option value={item.id} key={item.id}>
+                {item.name}
+              </option>
+            )
+          } else {
+            return (
+              <option value={item.value} key={item.value}>
+                {item.title}
+              </option>
+            )
+          }
+        })}
+      </>
+    )
+  }
   return (
     <SelectWrapper $hasPrefix={!!prefix}>
       {label && <Label $hasPrefix={!!prefix}>{label}</Label>}
@@ -30,7 +56,7 @@ const FormSelect: FC<SelectPropsType> = ({
             {prefix && <PrefixWrapper>{prefix}</PrefixWrapper>}
             <Select {...field}>
               {placeholder && <option value=''>{placeholder}</option>}
-              {children}
+              {renderOptions(data)}
             </Select>
           </Wrapper>
         )}

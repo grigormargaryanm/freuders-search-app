@@ -33,7 +33,7 @@ export const AgeWrapper = styled.div`
   display: flex;
   align-items: end;
   justify-content: space-between;
-  
+
   @media (max-width: 568px) {
     justify-content: start;
   }

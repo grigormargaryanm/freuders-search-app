@@ -20,4 +20,6 @@ export const rating: FilterDataType[] = [
 
 const minValue = 18
 const maxValue = 99
-export const age = Array.from({ length: maxValue - minValue + 1 }, (_, index) => index + minValue)
+export const age: FilterDataType[] = Array.from({ length: maxValue - minValue + 1 }, (_, index) => {
+  return { title: index + minValue + '', value: index + minValue }
+})

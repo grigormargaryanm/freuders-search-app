@@ -28,56 +28,41 @@ const FilterSpecialists: FC<FilterProps> = ({ handleFilterData, filter }) => {
     },
   })
 
-  const renderAgeOptions = age.map((item) => (
-    <option value={item} key={item}>
-      {item}
-    </option>
-  ))
-
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <FieldsWrapper>
-        <FormSelect control={control} name='sex' placeholder='Любого пола' label='Я ищу психолога'>
-          {sex.map(({ value, title }) => (
-            <option value={value} key={value}>
-              {title}
-            </option>
-          ))}
-        </FormSelect>
+        <FormSelect
+          control={control}
+          name='sex'
+          placeholder='Любого пола'
+          label='Я ищу психолога'
+          data={sex}
+        />
         <AgeWrapper>
-          <FormSelect control={control} name='ageFrom' label='В возрасте' prefix='От'>
-            {renderAgeOptions}
-          </FormSelect>
-          <FormSelect control={control} name='ageTo' prefix='До'>
-            {renderAgeOptions}
-          </FormSelect>
+          <FormSelect control={control} name='ageFrom' label='В возрасте' prefix='От' data={age} />
+          <FormSelect control={control} name='ageTo' prefix='До' data={age} />
         </AgeWrapper>
-        <FormSelect control={control} name='subjectId' placeholder='Любая тема' label='Тема'>
-          {topics.map(({ id, name }) => (
-            <option value={id} key={id}>
-              {name}
-            </option>
-          ))}
-        </FormSelect>
+        <FormSelect
+          control={control}
+          name='subjectId'
+          placeholder='Любая тема'
+          label='Тема'
+          data={topics}
+        />
         <FormSelect
           control={control}
           name='profSpeciality'
           placeholder='Все варианты'
           label='Квалификация'
-        >
-          {profSpeciality.map(({ value, title }) => (
-            <option value={value} key={value}>
-              {title}
-            </option>
-          ))}
-        </FormSelect>
-        <FormSelect control={control} name='ratingRange' placeholder='Любая тема' label='Тема'>
-          {rating.map(({ title, value }) => (
-            <option value={value} key={value}>
-              {title}
-            </option>
-          ))}
-        </FormSelect>
+          data={profSpeciality}
+        />
+        <FormSelect
+          control={control}
+          name='ratingRange'
+          placeholder='Любая тема'
+          label='Тема'
+          data={rating}
+        />
         <ButtonWrapper>
           <Button type='submit' text='Показать анкеты' />
         </ButtonWrapper>
