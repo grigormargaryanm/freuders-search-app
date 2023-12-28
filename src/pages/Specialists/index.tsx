@@ -68,6 +68,7 @@ const Specialists: FC = () => {
       {Object.keys(filter).length && (
         <FilterSpecialists handleFilterData={handleFilterData} filter={filter} />
       )}
+      <div style={{height:'100%'}}>
       {specialists.length ? (
         <>
           <SpecialistWrapper>
@@ -85,6 +86,7 @@ const Specialists: FC = () => {
       ) : !isLoading ? (
         <NotFound />
       ) : null}
+      </div>
     </PageWrapper>
   )
 }

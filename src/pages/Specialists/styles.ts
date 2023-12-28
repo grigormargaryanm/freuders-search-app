@@ -3,6 +3,8 @@ export const PageWrapper = styled.div`
   padding: 0 48px;
   margin: 52px 0 80px 0;
   height: 100%;
+  display: flex;
+  flex-direction: column;
   @media (min-width: 1200px) {
     max-width: 1096px;
     margin-left: auto;
@@ -22,6 +24,7 @@ export const PageWrapper = styled.div`
 export const ButtonWrapper = styled.div`
   button {
     width: 312px;
+    margin-bottom: 80px;
   }
   display: flex;
   justify-content: center;
@@ -29,6 +32,7 @@ export const ButtonWrapper = styled.div`
   @media (max-width: 768px) {
     button {
       width: 200px;
+      margin-bottom: 16px;
     }
   }
 `
